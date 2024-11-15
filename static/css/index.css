@@ -1,0 +1,35 @@
+/* Setting BG Image */
+body {
+    background-image: url("/static/css/images/index-bg.jpg");
+}
+
+/* Styling the hr */
+hr {
+    width: 90%;
+    margin-left: 5%;
+    border: none;
+    color: white;
+    background-color: white;
+    height: 3px;
+}
+
+/* Styling the text */
+p.lead {
+    font-size: .8rem;
+}
+
+.display-1 {
+    font-size: 6rem;
+}
+
+@media only screen and (max-width: 576px) { 
+    .display-1 {
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .display-1 {
+        font-size: 3rem;
+    }
+}

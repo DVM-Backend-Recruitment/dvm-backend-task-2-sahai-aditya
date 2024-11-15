@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}?{% now 'U' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column h-100 align-items-center justify-content-center">
+    <div class="display-1 text-white text-center" id="heading">
+        PopcornTime
+        <div>
+            <hr>
+        </div>
+    </div>
+    <p class="lead text-white">FOR ALL YOUR ENTERTAINMENT NEEDS!</p>
+</div>
+{% endblock %}

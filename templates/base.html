@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PopcornTime</title>
+
+    <script src="{% static 'bootstrap/jquery-3.7.1.slim.min.js' %}"></script>
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?{% now 'U' %}">
+    
+    {% block css %}
+    {% endblock css %}
+</head>
+<body>
+    <div class="container h-100" id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
