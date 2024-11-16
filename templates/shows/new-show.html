@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/shows/new-show.css' %}?{% now 'U' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="display-1">New Show</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.movie|as_crispy_field}}
+    {{ form.start_time|as_crispy_field}}
+    {{ form.end_time|as_crispy_field }}
+    <input type="submit" name="Create Show">
+</form>
+{% endblock %}
