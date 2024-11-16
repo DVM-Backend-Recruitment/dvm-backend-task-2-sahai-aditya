@@ -4,7 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from django import forms
 
 
-class CreateUserForm(forms.ModelForm):
+class SignupForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label="Password", validators=[validate_password])
     confirm_password = forms.CharField(widget=forms.PasswordInput(), label="Confirm Password")
 
@@ -20,3 +20,11 @@ class CreateUserForm(forms.ModelForm):
 
         if users != []:
             raise ValidationError("User with that email already exists.")
+
+class SigninForm(forms.ModelForm):
+    email = forms.EmailField(label="Email Address")
+    password = forms.CharField(widget=forms.PasswordInput(), label="Password", validators=[validate_password])
+
+    class Meta:
+        model = User
+        fields = ("email", "password")

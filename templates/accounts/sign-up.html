@@ -8,7 +8,7 @@
 
 {% block content %}
 <h1 class="display-1">Sign Up</h1>
-<form action="" method="post">
+<form method="post">
     {% csrf_token %}
 
     {{ form.email|as_crispy_field }}
@@ -17,7 +17,9 @@
 
     {{ form.confirm_password|as_crispy_field }}
 
-    <input type="submit" name="Create User">
+    <input type="submit" name="Signup">
 </form>
-{{ form.errors }}
+<p class="lead">
+    Already have an account? Sign in <a href="/acc/sign-in">here</a>.
+</p>
 {% endblock %}

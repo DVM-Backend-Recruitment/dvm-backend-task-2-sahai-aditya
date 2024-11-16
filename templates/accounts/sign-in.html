@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/accounts/sign-in.css' %}?{% now 'U' %}">
@@ -7,4 +8,19 @@
 
 {% block content %}
 <h1 class="display-1">Sign In</h1>
+{% if not credentials_are_valid %}
+<p class="lead">Invalid Credentials</p>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.email|as_crispy_field }}
+
+    {{ form.password|as_crispy_field }}
+
+    <input type="submit" name="Signin">
+</form>
+<p class="lead">
+    Don't have an account? Sign up <a href="/acc/sign-up">here</a>.
+</p>
 {% endblock %}

@@ -1,22 +1,39 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import logout, login, authenticate
 
-from .forms import CreateUserForm
+from .forms import SignupForm, SigninForm
 
 
 def sign_in(request):
-    return render(request, "accounts/sign-in.html")
+    form = SigninForm()
+
+    credentials_are_valid = True
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        user = authenticate(username=email, password=password)
+
+        if user:
+            login(request, user)
+            return redirect("/")
+
+        else:
+            credentials_are_valid = False
+
+    context = {"form": form, "credentials_are_valid": credentials_are_valid}
+    return render(request, "accounts/sign-in.html", context)
 
 def sign_up(request):
-    form = CreateUserForm()
+    form = SignupForm()
 
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
         confirm_password = request.POST.get("confirm_password")
 
-        form = CreateUserForm(data=request.POST)
+        form = SignupForm(data=request.POST)
 
         if password != confirm_password:
             form.add_error("password", "Passwords do not match.")
@@ -29,3 +46,7 @@ def sign_up(request):
     context = {"form": form}
 
     return render(request, "accounts/sign-up.html", context)
+
+def sign_out(request):
+    logout(request)
+    return redirect("/")
