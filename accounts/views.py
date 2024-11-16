@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth import logout, login, authenticate
 
 from .forms import SignupForm, SigninForm
@@ -45,8 +45,12 @@ def sign_up(request):
         if form.is_valid():
             user = User.objects.create_user(username=email, password=password, email=email)
             user.save()
+
             user_wallet = Wallet(user=user, balance=0)
             user_wallet.save()
+
+            customer_group = Group.objects.get(name="customer")
+            customer_group.user_set.add(user)
             return redirect("/acc/sign-in")
 
     context = {"form": form}
