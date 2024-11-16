@@ -1,8 +1,3 @@
-/* Setting BG Image */
-body {
-    background-image: url("/static/css/images/index-bg.jpg");
-}
-
 /* Styling the hr */
 hr {
     width: 90%;
