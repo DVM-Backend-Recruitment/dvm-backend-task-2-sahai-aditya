@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 
 from .forms import SignupForm, SigninForm
+from .decorators import unauthenticated_user
 
 
+@unauthenticated_user
 def sign_in(request):
     form = SigninForm()
 
@@ -25,6 +27,7 @@ def sign_in(request):
     context = {"form": form, "credentials_are_valid": credentials_are_valid}
     return render(request, "accounts/sign-in.html", context)
 
+@unauthenticated_user
 def sign_up(request):
     form = SignupForm()
 

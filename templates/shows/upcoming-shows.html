@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/shows/upcoming-shows.css' %}?{% now 'U' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="display-1">Upcoming Shows</h1>
+{% endblock %}
